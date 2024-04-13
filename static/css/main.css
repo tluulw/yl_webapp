@@ -357,3 +357,20 @@ body.lock {
 .hidden-data {
     display: None;
 }
+
+.adding-job__form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.adding-job__check {
+    display: flex;
+    margin: 10px 0;
+}
+
+.adding-job__field {
+    display: flex;
+    margin: 10px 0;
+}

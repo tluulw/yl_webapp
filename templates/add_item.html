@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <form action="" method="post" class="adding-job__form">
+        {{ form.hidden_tag() }}
+        <h1>Добавить работу</h1>
+        <div class="adding-job__field">
+            {{ form.title.label }} {{ form.title(class="form-control") }}
+            {% for error in form.title.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </div>
+        <div class="adding-job__field">
+            {{ form.type.label }} {{ form.type }}
+            {% for error in form.type.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </div>
+        <div class="adding-job__field">
+            {{ form.size.label }} {{ form.size }}
+            {% for error in form.size.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </div>
+        <div class="adding-job__field">
+            {{ form.about.label }} {{ form.about }}
+            {% for error in form.about.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </div>
+        <div class="adding-job__field">
+            {{ form.src.label }} {{ form.src }}
+            {% for error in form.src.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </div>
+        <div class="adding-job__field">
+            {{ form.price.label }} {{ form.price }}
+            {% for error in form.price.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </div>
+        <div class="adding-job__check">
+          {{ form.is_popular.label }} {{ form.is_popular }}
+        </div>
+        <div class="adding-job__check">
+          {{ form.is_new.label }} {{ form.is_new }}
+        </div>
+        <div class="adding-job__check">
+          {{ form.is_cafe.label }} {{ form.is_cafe }}
+        </div>
+        <div class="adding-job__check">
+          {{ form.is_snack.label }} {{ form.is_snack }}
+        </div>
+        <div class="adding-job__check">
+          {{ form.is_dessert.label }} {{ form.is_dessert }}
+        </div>
+        <div class="adding-job__check">
+          {{ form.is_drink.label }} {{ form.is_drink }}
+        </div>
+        <div class="adding-job__check">
+          {{ form.is_breakfast.label }} {{ form.is_breakfast }}
+        </div>
+        <div class="adding-job__check">
+          {{ form.is_other.label }} {{ form.is_other }}
+        </div>
+        <div class="adding-job__check">
+          {{ form.is_burger.label }} {{ form.is_burger }}
+        </div>
+        <p>{{ form.add(type="submit") }}</p>
+        <div>{{ message }}</div>
+    </form>
+
+{% endblock %}
