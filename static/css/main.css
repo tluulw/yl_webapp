@@ -283,7 +283,7 @@ body.lock {
     -webkit-tap-highlight-color: transparent;
 }
 
-.menu-categories__item:hover, .menu-categories__item_selected, .menu-categories__label:hover {
+.menu-categories__item:hover, .menu-categories__label:hover {
     color: #000;
     background: #f4f4f4;
 }
@@ -351,7 +351,12 @@ body.lock {
     margin-right: 0;
     border-radius: 0;
     height: 35px;
+    color: #606060;
+}
+
+.menu-categories__item_selected {
     color: #000;
+    background: #f4f4f4;
 }
 
 .hidden-data {

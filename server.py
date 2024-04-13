@@ -51,15 +51,16 @@ def add_item():
 def get_products():
     db_sess = db_session.create_session()
 
-    filter = request.args.items().__next__()[0]
+    # filter = request.args.items().__next__()[0]
+    category = request.args.get('category')
 
-    products = []
+    if category == 'is_popular':
+        return jsonify(
+            {'products': [item.to_dict() for item in db_sess.query(Item).filter(Item.is_popular == 1).all()]})
 
-    if filter == 'is_popular':
-        products = db_sess.query(Item).filter(Item.is_popular == 1).all()
-        products = [item.to_dict() for item in products]
-
-    return jsonify({'products': products})
+    if category == 'is_snack':
+        return jsonify(
+            {'products': [item.to_dict() for item in db_sess.query(Item).filter(Item.is_snack == 1).all()]})
 
 
 def main():
