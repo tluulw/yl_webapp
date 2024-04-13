@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link type="text/css" href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Mukta:wght@600&family=Play:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Title</title>
+  </head>
+  <body class="wrapper">
+    <header class="header">
+      <div class="head">
+        <svg
+          class="head-logo"
+          viewBox="0 -25 50 75"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g fill="none" fill-rule="evenodd">
+            <path
+              d="M22.629.09c-2.734 1.854-3.601 5.48-1.907 8.347l10.77 18.24c.146.248.48.316.72.152 2.735-1.855 3.602-5.48 1.907-8.349L23.35.242a.508.508 0 00-.721-.153M11.86.09c-2.734 1.854-3.6 5.48-1.906 8.347l10.77 18.24c.146.248.48.316.72.152 2.735-1.855 3.601-5.48 1.906-8.349L12.582.242a.508.508 0 00-.722-.153"
+              fill="#ee7203"
+            ></path>
+            <path
+              d="M12.892 20.622c0-3.478-2.886-6.297-6.446-6.297-3.56 0-6.446 2.82-6.446 6.297s2.886 6.298 6.446 6.298c3.56 0 6.446-2.82 6.446-6.298"
+              fill="#fb471f"
+            ></path>
+          </g>
+        </svg>
+        <h1 class="head-title">Бот и точка</h1>
+      </div>
+    </header>
+<!-- Begin page content -->
+{% block content %}{% endblock %}
+</body>
+</html>

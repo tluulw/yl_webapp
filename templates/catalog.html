@@ -1,0 +1,161 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1 class="page_h1">Наше меню</h1>
+    <div id="menuWrap" class="menu-categories-wrap">
+      <div>
+        <div id="menuOuter" class="menu-categories-outer">
+          <div class="menu-categories">
+            <div class="menu-categories__wrap">
+              <div
+                title="Новинки"
+                class="menu-categories__item --no-left-padding"
+              >
+                <span>Новинки</span>
+              </div>
+              <div title="Популярное" class="menu-categories__item" id="popular">
+                <span>Популярное</span>
+              </div>
+              <div title="Напитки" class="menu-categories__item">
+                <span>Напитки</span>
+              </div>
+              <div title="Комбо Обед" class="menu-categories__item">
+                <span>Комбо Обед</span>
+              </div>
+              <div title="Бургеры и роллы" class="menu-categories__item">
+                <span>Бургеры и роллы</span>
+              </div>
+              <div
+                title="Картофель, стартеры и салаты"
+                class="menu-categories__item"
+              >
+                <span>Картофель, стартеры и салаты</span>
+              </div>
+              <div title="Кафе" class="menu-categories__item">
+                <span>Кафе</span>
+              </div>
+              <div
+                title="Завтрак"
+                class="menu-categories__item menu-categories__item_selected"
+                id="category_426"
+                data-section-selector="#section_426"
+                data-section-id="426"
+              >
+                <span>Завтрак</span>
+              </div>
+              <div class="menu-categories__more">
+                <span class="menu-categories__label">
+                  Еще
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    class="menu-categories__more-icon"
+                  >
+                    <path
+                      fill="#B69A81"
+                      fill-rule="evenodd"
+                      d="M12.06 6.176l-.266-.265a.5.5 0 00-.707 0L8 8.998 4.913 5.911a.5.5 0 00-.707 0l-.265.265L8 10.236l4.06-4.06z"
+                    ></path>
+                  </svg>
+                </span>
+                <div class="menu-categories__hidden-wrap">
+                  <div
+                    title="Кидз Комбо"
+                    class="menu-categories__item menu-categories__item_hidden"
+                  >
+                    <span>Кидз Комбо</span>
+                  </div>
+                  <div
+                    title="Десерты"
+                    class="menu-categories__item menu-categories__item_hidden"
+                  >
+                    <span>Десерты</span>
+                  </div>
+                  <div
+                    title="Соусы и другое"
+                    class="menu-categories__item menu-categories__item_hidden"
+                  >
+                    <span>Соусы и другое</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="base-grid-container menu-catalog">
+      <a
+        title="Гранд Пикант Комбо"
+        class="catalog-product base-grid-item popup-link"
+        href="#modal__item"
+      >
+        <div class="catalog-product__link-image">
+          <figure class="base-image catalog-product__image">
+            <img
+              src="https://vkusnoitochka.ru/resize/290x286/upload/iblock/616/73x5pr3v15lpl04o82dpwxepvsrj0mbu/large.png"
+              width="100%"
+              height="100%"
+              loading="lazy"
+              onerror="this.src='/_nuxt/img/logo-gray.2408796.svg';"
+              alt="Гранд Пикант Комбо"
+              class="base-image__img"
+              style="width: 100%; height: 100%"
+            />
+          </figure>
+          <ul class="catalog-product-labels catalog-product__labels">
+            <li
+              class="catalog-product-labels__label catalog-product-labels__label_red"
+            >
+              Новинка
+            </li>
+          </ul>
+        </div>
+        <div class="catalog-product__content">
+          <div class="catalog-product__info">
+            <div class="catalog-product-title">Гранд Пикант Комбо</div>
+          </div>
+          <div class="catalog-product__footer">
+            <p class="catalog-product__size">Средний</p>
+          </div>
+        </div>
+      </a>
+      <div class="modal" id="modal__item">
+        <div class="modal__box">
+          <a class="modal__close-btn close-popup" id="close-modal__item">
+            <svg
+              width="23"
+              height="25"
+              viewBox="0 0 23 25"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M2.09082 0.03125L22.9999 22.0294L20.909 24.2292L-8.73579e-05 2.23106L2.09082 0.03125Z"
+                fill="#333333"
+              />
+              <path
+                d="M0 22.0295L20.9091 0.0314368L23 2.23125L2.09091 24.2294L0 22.0295Z"
+                fill="#333333"
+              />
+            </svg>
+          </a>
+          <h2>Modal</h2>
+          <div id="test"></div>
+        </div>
+      </div>
+    </div>
+    <div id="hidden-data" class="hidden-data"></div>
+    <script defer src="{{ url_for('static', filename='js/modals.js') }}"></script>
+    <script defer src="{{ url_for('static', filename='js/horizontal_scroll.js') }}"></script>
+    <script defer src="{{ url_for('static', filename='js/more.js') }}"></script>
+    <script defer src="{{ url_for('static', filename='js/phone_scroll.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/categories.js') }}"></script>
+<!--    <script>-->
+<!--        var products = $('#hidden-data').val();-->
+<!--    </script>-->
+
+{% endblock %}
