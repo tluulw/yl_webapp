@@ -13,8 +13,7 @@ class Combo(SqlAlchemyBase, SerializerMixin):
 
     title = sqlalchemy.Column(sqlalchemy.String, nullable=True)  # название комбо
 
-    size = sqlalchemy.Column(sqlalchemy.String,
-                             nullable=True)  # размер комбо (стандартный или большой) или кидз
+    type = sqlalchemy.Column(sqlalchemy.String, nullable=True)  # тип комбо (обычный или кидз)
 
     is_breakfast = sqlalchemy.Column(sqlalchemy.Boolean, nullable=True, default=False)  # завтрак или нет
 

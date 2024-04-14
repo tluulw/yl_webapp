@@ -90,75 +90,12 @@
         </div>
       </div>
     </div>
-    <div class="base-grid-container menu-catalog" id="menu">
-      <a
-        title="Гранд Пикант Комбо"
-        class="catalog-product base-grid-item popup-link"
-        href="#modal__item"
-      >
-        <div class="catalog-product__link-image">
-          <figure class="base-image catalog-product__image">
-            <img
-              src="https://vkusnoitochka.ru/resize/290x286/upload/iblock/616/73x5pr3v15lpl04o82dpwxepvsrj0mbu/large.png"
-              width="100%"
-              height="100%"
-              loading="lazy"
-              onerror="this.src='/_nuxt/img/logo-gray.2408796.svg';"
-              alt="Гранд Пикант Комбо"
-              class="base-image__img"
-              style="width: 100%; height: 100%"
-            />
-          </figure>
-          <ul class="catalog-product-labels catalog-product__labels">
-            <li
-              class="catalog-product-labels__label catalog-product-labels__label_red"
-            >
-              Новинка
-            </li>
-          </ul>
-        </div>
-        <div class="catalog-product__content">
-          <div class="catalog-product__info">
-            <div class="catalog-product-title">Гранд Пикант Комбо</div>
-          </div>
-          <div class="catalog-product__footer">
-            <p class="catalog-product__size">Средний</p>
-          </div>
-        </div>
-      </a>
-      <div class="modal" id="modal__item">
-        <div class="modal__box">
-          <a class="modal__close-btn close-popup" id="close-modal__item">
-            <svg
-              width="23"
-              height="25"
-              viewBox="0 0 23 25"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M2.09082 0.03125L22.9999 22.0294L20.909 24.2292L-8.73579e-05 2.23106L2.09082 0.03125Z"
-                fill="#333333"
-              />
-              <path
-                d="M0 22.0295L20.9091 0.0314368L23 2.23125L2.09091 24.2294L0 22.0295Z"
-                fill="#333333"
-              />
-            </svg>
-          </a>
-          <h2>Modal</h2>
-          <div id="test"></div>
-        </div>
-      </div>
-    </div>
-    <div id="hidden-data" class="hidden-data"></div>
+    <ul class="base-grid-container menu-catalog" id="menu">
+    </ul>
     <script defer src="{{ url_for('static', filename='js/modals.js') }}"></script>
     <script defer src="{{ url_for('static', filename='js/horizontal_scroll.js') }}"></script>
     <script defer src="{{ url_for('static', filename='js/more.js') }}"></script>
     <script defer src="{{ url_for('static', filename='js/phone_scroll.js') }}"></script>
     <script src="{{ url_for('static', filename='js/categories.js') }}"></script>
-<!--    <script>-->
-<!--        var products = $('#hidden-data').val();-->
-<!--    </script>-->
 
 {% endblock %}

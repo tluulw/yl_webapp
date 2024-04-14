@@ -68,6 +68,10 @@ body.lock {
     max-width: 150px;
 }
 
+.catalog-product:hover {
+    box-shadow: 0 5px 20px 0 rgba(0,0,0,.14);
+}
+
 .base-grid-item {
     flex: 0 0 auto;
     margin: 0 10px 20px 10px;
@@ -122,6 +126,10 @@ body.lock {
     background-color: #e2458e;
 }
 
+.catalog-product-labels__label_purple {
+    background-color: #563c88;
+}
+
 .catalog-product-labels__label {
     padding: 5px 10px;
     display: flex;
@@ -160,24 +168,6 @@ body.lock {
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-}
-
-.catalog-product__footer {
-    width: 100%;
-    display: flex;
-    min-height: 17px;
-    align-items: center;
-    justify-content: space-around;
-}
-
-.catalog-product__size {
-    font-size: 17px;
-    color: #000;
-}
-
-.catalog-product__price {
-    font-weight: 700;
-    font-size: 17px;
 }
 
 .modal {

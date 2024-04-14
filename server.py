@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 from flask import Flask, render_template, request, jsonify, redirect
 
 from data import db_session
+from data.combos import Combo
 from data.items import Item
 from forms.add_item import AddItemForm
 
@@ -12,7 +13,7 @@ load_dotenv()
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 
-CATEGORY_FILTERS = {
+ITEMS_CATEGORY_FILTERS = {
     'is_popular': Item.is_popular,
     'is_snack': Item.is_snack,
     'is_new': Item.is_new,
@@ -24,13 +25,18 @@ CATEGORY_FILTERS = {
     'is_burger': Item.is_burger
 }
 
+COMBOS_CATEGORY_FILTERS = {
+    'combo': 'Обычный',
+    'kids_combo': 'Кидз'
+}
+
 
 @app.route('/menu', methods=['GET'])
 def popular():
     return render_template('menu.html', title='Меню')
 
 
-@app.route('/item/add', methods=['GET', 'POST'])
+@app.route('/item/add', methods=['GET'])
 def add_item():
     form = AddItemForm()
 
@@ -56,7 +62,22 @@ def add_item():
         db_sess.add(item)
         db_sess.commit()
         return 'Item was added'
-    return render_template('add_item.html', title='Adding an item', form=form, h='Добаить позицию')
+    return render_template('add_item.html', title='Adding an item', form=form, h='Добавить позицию')
+
+
+@app.route('/item/delete/<int:id>', methods=['GET'])
+def delete_item(id):
+    db_sess = db_session.create_session()
+
+    db_sess.delete(db_sess.query(Item).filter(Item.id == id).first())
+    db_sess.commit()
+
+    if db_sess.query(Item).filter(Item.id > id).first():
+        for el in db_sess.query(Item).filter(Item.id > id).all():
+            el.id -= 1
+            db_sess.commit()
+
+    return 'Item was deleted'
 
 
 @app.route('/item/edit/<int:id>', methods=['GET', 'POST'])
@@ -68,7 +89,6 @@ def edit_item(id):
     form = AddItemForm()
 
     if form.validate_on_submit():
-
         item.title = form.title.data
         item.type = form.type.data
         item.size = form.size.data
@@ -114,8 +134,19 @@ def get_category():
 
     category = request.args.get('category')  # парсинг запроса (получение нужной категории)
 
-    return jsonify(  # получение продуктов, исходя из нужной категории
-        {'products': [item.to_dict() for item in db_sess.query(Item).filter(CATEGORY_FILTERS[category] == 1).all()]})
+    if category in ITEMS_CATEGORY_FILTERS:  # получение продуктов, исходя из нужной категории
+
+        return jsonify(
+            {'data': [{
+                'products': [item.to_dict() for item in
+                             db_sess.query(Item).filter(ITEMS_CATEGORY_FILTERS[category] == 1).all()]},
+                {'category': category}]})
+
+    return jsonify(
+        {'data': [{
+            'products': [item.to_dict() for item in
+                         db_sess.query(Combo).filter(Combo.type == COMBOS_CATEGORY_FILTERS[category]).all()]},
+            {'category': category}]})
 
 
 def main():
