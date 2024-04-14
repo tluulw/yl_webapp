@@ -148,7 +148,7 @@ $(document).ready(function() {
                 }
                 $.ajax({
                     type: 'GET',
-                    url: '/get_products',
+                    url: '/get_category',
                     data: myData,
                     success: function(data) {
                         console.log(data)

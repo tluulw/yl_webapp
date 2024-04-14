@@ -4,7 +4,7 @@
 
     <form action="" method="post" class="adding-job__form">
         {{ form.hidden_tag() }}
-        <h1>Добавить работу</h1>
+        <h1>{{ h }}</h1>
         <div class="adding-job__field">
             {{ form.title.label }} {{ form.title(class="form-control") }}
             {% for error in form.title.errors %}
