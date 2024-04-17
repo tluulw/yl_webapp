@@ -36,7 +36,7 @@ def popular():
     return render_template('menu.html', title='Меню')
 
 
-@app.route('/item/add', methods=['GET'])
+@app.route('/item/add', methods=['GET', 'POST'])
 def add_item():
     form = AddItemForm()
 
@@ -62,7 +62,7 @@ def add_item():
         db_sess.add(item)
         db_sess.commit()
         return 'Item was added'
-    return render_template('add_item.html', title='Adding an item', form=form, h='Добавить позицию')
+    return render_template('add_item.html', title='Adding an item', form=form, h='Добаить позицию')
 
 
 @app.route('/item/delete/<int:id>', methods=['GET'])
@@ -135,11 +135,11 @@ def get_category():
     category = request.args.get('category')  # парсинг запроса (получение нужной категории)
 
     if category in ITEMS_CATEGORY_FILTERS:  # получение продуктов, исходя из нужной категории
-
         return jsonify(
             {'data': [{
                 'products': [item.to_dict() for item in
-                             db_sess.query(Item).filter(ITEMS_CATEGORY_FILTERS[category] == 1).all()]},
+                             sorted(db_sess.query(Item).filter(ITEMS_CATEGORY_FILTERS[category] == 1).all(),
+                                    key=lambda x: x.title)]},
                 {'category': category}]})
 
     return jsonify(

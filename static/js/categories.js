@@ -1,5 +1,5 @@
 function buildHTML(category, products) {
-    var html = '';
+    var html = "";
     var index = 0;
 
     products.forEach(function(item) {
@@ -20,7 +20,7 @@ function buildHTML(category, products) {
                 </div>
                 <div class="catalog-product__content">
                     <div class="catalog-product__info">
-                        <div class="catalog-product-title">${item['title']}</div>
+                        <div class="catalog-product-title">${item['title']} ${item['size'] != 'Обычный' ? `${item['size']}` : ''}</div>
                     </div>
                 </div>
             </li>
@@ -44,8 +44,11 @@ function buildHTML(category, products) {
                           />
                         </svg>
                     </a>
-                    <h2>Modal</h2>
-                    <div id="test"></div>
+                    <img src="${item['src']}">
+                    <h2>${item['title']} ${item['size'] != 'Обычный' ? `${item['size']}` : ''}</h2>
+                    <p>${item['about']}</p>
+                    <p>${item['price']}₽</p>
+                    <button class='modal__add-button'>Добавить в корзину</button>
                 </div>
             </li>`;
         index++;
