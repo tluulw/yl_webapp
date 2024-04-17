@@ -14,7 +14,7 @@ dp = Dispatcher()
 kb = InlineKeyboardMarkup(inline_keyboard=[
     [InlineKeyboardButton(text='Каталог',
                           web_app=WebAppInfo(
-                              url='https://969106c9-b9f2-4f33-91aa-61ef6248df8f.tunnel4.com/menu'))]
+                              url='https://c352be71-cb1b-4179-a2eb-3b8ae22b0010.tunnel4.com/menu'))]
 ])
 
 logging.basicConfig(

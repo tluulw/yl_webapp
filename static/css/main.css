@@ -51,6 +51,7 @@ body.lock {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
+    padding-left: 0px;
 }
 
 .catalog-product {
@@ -66,6 +67,7 @@ body.lock {
     cursor: pointer;
     color: #000;
     max-width: 150px;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .catalog-product:hover {
@@ -188,6 +190,9 @@ body.lock {
 }
 
 .modal__box {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     position: relative;
     max-width: 500px;
     padding: 45px;
@@ -207,6 +212,7 @@ body.lock {
     background-color: transparent;
     padding: 5px;
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .modal__close-btn svg path {
@@ -233,7 +239,7 @@ body.lock {
 .menu-categories-outer {
     position: relative;
     background: #fff;
-    padding: 10px 0px 10px 10%;
+    padding: 10px 0px 10px 0px;
     box-shadow: none;
     will-change: box-shadow;
 }
@@ -368,4 +374,10 @@ body.lock {
 .adding-job__field {
     display: flex;
     margin: 10px 0;
+}
+
+.modal__add-button {
+    width: 400px;
+    height: 60px;
+    background-color: orange;
 }
