@@ -17,8 +17,8 @@ function modalsScript() {
             popupLink.addEventListener("click", function (e) {
 
                 const popupName = popupLink.getAttribute("href").replace('#', "");
-                const curentPopup = document.getElementById(popupName);
-                popupOpen(curentPopup) ;
+                const currentPopup = document.getElementById(popupName);
+                popupOpen(currentPopup) ;
                 e.preventDefault();
             });
         }
@@ -53,17 +53,28 @@ function modalsScript() {
 
             currentPopup.classList.add('open');
 
+            const addButtons = document.querySelectorAll(".modal__add-button")
+
             currentPopup.addEventListener('click', function (e) {
                 if (!e.target.closest('.modal__box')) {
-                    popupClose(currentPopup);
+                    popupClose(document.querySelector('.modal.open'));
                 }
             });
 
             window.addEventListener('keydown', (e) => {
                 if (e.key == "Escape") {
-                    popupClose(currentPopup);
+                    popupClose(document.querySelector('.modal.open'));
                 }
             });
+
+            for (let index = 0; index < addButtons.length; index++) {
+
+                const addButton = addButtons[index];
+
+                addButton.addEventListener("click", function (e) {
+                    popupClose(document.querySelector('.modal.open'));
+                });
+            }
         }
     }
 
