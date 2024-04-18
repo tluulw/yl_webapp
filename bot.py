@@ -1,6 +1,7 @@
 import asyncio
 import logging
 import os
+import sqlite3
 
 from aiogram import Bot, Dispatcher
 from aiogram.enums import ParseMode
@@ -14,7 +15,7 @@ dp = Dispatcher()
 kb = InlineKeyboardMarkup(inline_keyboard=[
     [InlineKeyboardButton(text='Каталог',
                           web_app=WebAppInfo(
-                              url='https://c352be71-cb1b-4179-a2eb-3b8ae22b0010.tunnel4.com/menu'))]
+                              url='https://31fcba4f-04f5-4cd0-87cb-61574f069555.tunnel4.com/menu'))]
 ])
 
 logging.basicConfig(
@@ -29,7 +30,7 @@ async def echo(message: Message):
 
 
 async def main() -> None:
-    BOT_TOKEN = os.getenv("BOT_TOKEN")
+    BOT_TOKEN = "7143660226:AAFmETOOJtW2JcpvbDJZhTaLl-ibRHIkwPw"
     # Initialize Bot instance with a default parse mode which will be passed to all API calls
     bot = Bot(BOT_TOKEN, parse_mode=ParseMode.HTML)
     # And the run events dispatching
