@@ -1,10 +1,9 @@
 function buildHTML(category, products) {
     var html = "";
-    var index = 0;
 
     products.forEach(function(item) {
         html += `
-            <li title="${item['title']}" class="catalog-product base-grid-item popup-link" href='#modal-item${index}'>
+            <li title="${item['title']}" class="catalog-product base-grid-item popup-link" href='#modal-item${item["id"]}'>
                 <div class="catalog-product__link-image">
                     <figure class="base-image catalog-product__image">
                         <img src="${item['src']}" width="100%" height="100%" loading="lazy" alt="${item['title']}" class="base-image__img" style="width: 100%; height: 100%"/>
@@ -24,7 +23,7 @@ function buildHTML(category, products) {
                     </div>
                 </div>
             </li>
-            <li class="modal" id="modal-item${index}">
+            <li class="modal" id="modal-item${item['id']}">
                 <div class="modal__box">
                     <a class="modal__close-btn close-popup" id="close-modal__item">
                         <svg
@@ -48,10 +47,9 @@ function buildHTML(category, products) {
                     <h2>${item['title']} ${item['size'] != 'Обычный' ? `${item['size']}` : ''}</h2>
                     <p>${item['about']}</p>
                     <p>${item['price']}₽</p>
-                    <button class='modal__add-button'>Добавить в корзину</button>
+                    <button class='modal__add-button' id='modal-item${item['id']}__button'>Добавить в корзину</button>
                 </div>
             </li>`;
-        index++;
     });
 
     return html;

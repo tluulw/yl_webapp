@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Сайт с отзывами</title>
+    <style>
+        #reviews {
+            margin-top: 20px;
+        }
+        .review {
+            border: 1px solid #000;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Оставьте свой отзыв</h1>
+    <form id="review-form">
+        <label for="name">Ваше имя:</label><br>
+        <input type="text" id="name" name="name"><br>
+        <label for="review">Ваш отзыв:</label><br>
+        <textarea id="review" name="review"></textarea><br>
+        <input type="submit" value="Отправить отзыв">
+    </form>
+    <div id="reviews">
+        <!-- Отзывы будут добавляться здесь -->
+    </div>
+    <script>
+        document.getElementById('review-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var name = document.getElementById('name').value;
+            var review = document.getElementById('review').value;
+            var reviewDiv = document.createElement('div');
+            reviewDiv.className = 'review';
+            reviewDiv.textContent = name + ' написал: ' + review;
+            document.getElementById('reviews').appendChild(reviewDiv);
+        });
+    </script>
+</body>
+</html>

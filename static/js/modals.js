@@ -18,7 +18,8 @@ function modalsScript() {
 
                 const popupName = popupLink.getAttribute("href").replace('#', "");
                 const currentPopup = document.getElementById(popupName);
-                popupOpen(currentPopup) ;
+                const currentButton = document.getElementById(popupName + '__button')
+                popupOpen(currentPopup, currentButton) ;
                 e.preventDefault();
             });
         }
@@ -37,7 +38,7 @@ function modalsScript() {
         }
     }
 
-    function popupOpen(currentPopup) {
+    function popupOpen(currentPopup, currentButton) {
         if (currentPopup && unlock) {
 
             const popupActive = document.querySelector('.modal.open');
@@ -53,8 +54,6 @@ function modalsScript() {
 
             currentPopup.classList.add('open');
 
-            const addButtons = document.querySelectorAll(".modal__add-button")
-
             currentPopup.addEventListener('click', function (e) {
                 if (!e.target.closest('.modal__box')) {
                     popupClose(document.querySelector('.modal.open'));
@@ -67,14 +66,10 @@ function modalsScript() {
                 }
             });
 
-            for (let index = 0; index < addButtons.length; index++) {
-
-                const addButton = addButtons[index];
-
-                addButton.addEventListener("click", function (e) {
-                    popupClose(document.querySelector('.modal.open'));
-                });
-            }
+            currentButton.addEventListener('click', function (e) {
+                popupClose(document.querySelector('.modal.open'));
+                showButton();
+            });
         }
     }
 

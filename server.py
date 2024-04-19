@@ -1,5 +1,6 @@
 import os
 
+from aiogram import Bot
 from dotenv import load_dotenv
 from flask import Flask, render_template, request, jsonify, redirect
 
@@ -12,6 +13,10 @@ load_dotenv()
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
+
+BOT_TOKEN = os.getenv("BOT_TOKEN")
+PROVIDER_TOKEN = os.getenv("PROVIDER_TOKEN")
+bot = Bot(BOT_TOKEN)
 
 ITEMS_CATEGORY_FILTERS = {
     'is_popular': Item.is_popular,
@@ -149,8 +154,19 @@ def get_category():
             {'category': category}]})
 
 
+# @app.route('/get_invoice_url', methods=['GET'])
+# def get_invoice():
+#     pass
+
+
+@app.route('/reviews', methods=['GET'])
+def reviews():
+    return render_template('reviews.html')
+
+
 def main():
     db_session.global_init('db/database.db')
+
     app.run(port=5000, host='127.0.0.1')
 
 
