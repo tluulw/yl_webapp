@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<h1 class="page_h1">Наше меню</h1>
+    <h1 class="page_h1">Наше меню</h1>
     <div id="menuWrap" class="menu-categories-wrap">
       <div>
         <div id="menuOuter" class="menu-categories-outer">
@@ -91,6 +91,29 @@
       </div>
     </div>
     <ul class="base-grid-container menu-catalog" id="menu"></ul>
+    <div class="modal" id="cart-modal">
+        <div class="modal__box">
+            <a class="modal__close-btn close-popup" id="close-modal__item">
+                <svg
+                  width="23"
+                  height="25"
+                  viewBox="0 0 23 25"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M2.09082 0.03125L22.9999 22.0294L20.909 24.2292L-8.73579e-05 2.23106L2.09082 0.03125Z"
+                    fill="#333333"
+                  />
+                  <path
+                    d="M0 22.0295L20.9091 0.0314368L23 2.23125L2.09091 24.2294L0 22.0295Z"
+                    fill="#333333"
+                  />
+                </svg>
+            </a>
+            <h2>Приветики</h2>
+        </div>
+    </div>
     <script src="{{ url_for('static', filename='js/categories.js') }}"></script>
     <script defer src="{{ url_for('static', filename='js/modals.js') }}"></script>
     <script defer src="{{ url_for('static', filename='js/cart.js') }}"></script>

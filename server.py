@@ -1,6 +1,7 @@
 import os
 
-from aiogram import Bot
+import requests
+from aiogram.types import LabeledPrice
 from dotenv import load_dotenv
 from flask import Flask, render_template, request, jsonify, redirect
 
@@ -16,7 +17,6 @@ app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 PROVIDER_TOKEN = os.getenv("PROVIDER_TOKEN")
-bot = Bot(BOT_TOKEN)
 
 ITEMS_CATEGORY_FILTERS = {
     'is_popular': Item.is_popular,
@@ -154,9 +154,14 @@ def get_category():
             {'category': category}]})
 
 
-# @app.route('/get_invoice_url', methods=['GET'])
-# def get_invoice():
-#     pass
+@app.route('/get_invoice_url', methods=['GET'])
+def get_invoice():
+    cart = request.args.get('items')
+
+    params = {'title': 'Оплата товара', 'description': 'Описание товара', 'payload': 'true',
+              'provider_token': PROVIDER_TOKEN, 'currency': 'rub',
+              'prices': [{'label': el, 'amount': 500 * 100} for el in cart.split(' ')]}
+    return requests.post(f'https://api.telegram.org/bot{BOT_TOKEN}/createInvoiceLink', json=params).json()
 
 
 @app.route('/reviews', methods=['GET'])

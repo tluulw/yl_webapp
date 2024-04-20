@@ -1,13 +1,94 @@
+const body = document.querySelector('body');
+
+const innerTimeout = 800;
+const outerTimeout = 400;
+
+var unlock = true;
+
+function bodyLock() {
+    if (document.body.offsetHeight > window.innerHeight) {
+        body.style.paddingRight = '5px';
+    } else {
+        body.style.paddingRight = '0px';
+    }
+
+    body.classList.add('lock');
+
+    unlock = false;
+
+    setTimeout(function () {
+        unlock = true;
+    }, innerTimeout);
+}
+
+function bodyUnlock() {
+    setTimeout(function () {
+        body.style.paddingRight = '0px';
+        body.classList.remove('lock');
+
+    }, outerTimeout);
+
+    unlock = false;
+
+    setTimeout(function () {
+        unlock = true;
+    }, outerTimeout);
+}
+
+function popupOpen(currentPopup, currentButton) {
+    if (currentPopup && unlock) {
+
+        const popupActive = document.querySelector('.modal.open');
+
+        if (popupActive) {
+
+            popupClose(popupActive, false);
+
+        } else {
+
+            bodyLock();
+        }
+
+        currentPopup.classList.add('open');
+
+        hideButton();
+
+        currentPopup.addEventListener('click', function (e) {
+            if (!e.target.closest('.modal__box')) {
+                popupClose(document.querySelector('.modal.open'));
+            }
+        });
+
+        window.addEventListener('keydown', (e) => {
+            if (e.key == "Escape") {
+                popupClose(document.querySelector('.modal.open'));
+            }
+        });
+
+        currentButton.addEventListener('click', function (e) {
+            popupClose(document.querySelector('.modal.open'));
+            addItem(currentButton.getAttribute("id").replace('__button', "").replace('modal-item', ""));
+            showButton();
+        });
+    }
+}
+
+function popupClose(popupActive, doUnlock = true) {
+    if (unlock) {
+
+        popupActive.classList.remove('open');
+
+        if (doUnlock) {
+
+            bodyUnlock();
+            showButton();
+        }
+    }
+}
+
 function modalsScript() {
 
     var popupLinks = document.querySelectorAll(".popup-link");
-
-    var body = document.querySelector('body');
-
-    var innerTimeout = 800;
-    var outerTimeout = 400;
-
-    var unlock = true;
 
     if (popupLinks.length > 0) {
         for (let index = 0; index < popupLinks.length; index++) {
@@ -36,84 +117,6 @@ function modalsScript() {
                 e.preventDefault();
             });
         }
-    }
-
-    function popupOpen(currentPopup, currentButton) {
-        if (currentPopup && unlock) {
-
-            const popupActive = document.querySelector('.modal.open');
-
-            if (popupActive) {
-
-                popupClose(popupActive, false);
-
-            } else {
-
-                bodyLock();
-            }
-
-            currentPopup.classList.add('open');
-
-            currentPopup.addEventListener('click', function (e) {
-                if (!e.target.closest('.modal__box')) {
-                    popupClose(document.querySelector('.modal.open'));
-                }
-            });
-
-            window.addEventListener('keydown', (e) => {
-                if (e.key == "Escape") {
-                    popupClose(document.querySelector('.modal.open'));
-                }
-            });
-
-            currentButton.addEventListener('click', function (e) {
-                popupClose(document.querySelector('.modal.open'));
-                showButton();
-            });
-        }
-    }
-
-    function popupClose(popupActive, doUnlock = true) {
-        if (unlock) {
-
-            popupActive.classList.remove('open');
-
-            if (doUnlock) {
-
-                bodyUnlock();
-            }
-        }
-    }
-
-    function bodyLock() {
-        if (document.body.offsetHeight > window.innerHeight) {
-            body.style.paddingRight = '5px';
-        } else {
-            body.style.paddingRight = '0px';
-        }
-
-        body.classList.add('lock');
-
-        unlock = false;
-
-        setTimeout(function () {
-            unlock = true;
-        }, innerTimeout);
-    }
-
-
-    function bodyUnlock() {
-        setTimeout(function () {
-            body.style.paddingRight = '0px';
-            body.classList.remove('lock');
-
-        }, outerTimeout);
-
-        unlock = false;
-
-        setTimeout(function () {
-            unlock = true;
-        }, outerTimeout);
     }
 }
 

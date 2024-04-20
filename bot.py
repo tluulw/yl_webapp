@@ -14,7 +14,7 @@ dp = Dispatcher()
 kb = InlineKeyboardMarkup(inline_keyboard=[
     [InlineKeyboardButton(text='Каталог',
                           web_app=WebAppInfo(
-                              url='https://11b7a6b9-812e-42b0-ae6e-766d0b53b7d1.tunnel4.com/menu'))]
+                              url='https://5b30cbb6-8b1b-45db-800f-9d8b416bad01.tunnel4.com/menu'))]
 ])
 
 logging.basicConfig(
@@ -32,15 +32,7 @@ async def echo(message: Message):
     await message.answer('Посмотреть каталог:', reply_markup=kb)
 
 
-# async def create_invoice():
-#     invoice_link = await bot.create_invoice_link(title='Оплата товара', description='Описание товара', payload='true',
-#                                                  provider_token=PROVIDER_TOKEN, currency='rub',
-#                                                  prices=[LabeledPrice(label='Покупка', amount=500 * 100)])
-#     print(invoice_link)
-
-
 async def main() -> None:
-    # await create_invoice()
     await dp.start_polling(bot)
 
 
