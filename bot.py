@@ -27,10 +27,20 @@ PROVIDER_TOKEN = os.getenv("PROVIDER_TOKEN")
 bot = Bot(BOT_TOKEN)
 
 
-@dp.message(Command('menu'))
+@dp.message(Command('start'))
+async def echo(message: Message):
+    await message.answer(
+        'Здравствуйте! Для использования корзины и бота нажмите на кнопку "Меню", рядом с полем ввода текста 👇')
+    await message.answer('Для написания вашего первого отзыва введите команду /reviews')
+
+
+@dp.message(Command('reviews'))
 async def echo(message: Message):
     await message.answer('Наши отзывы:', reply_markup=kb)
 
+@dp.message()
+async def echo(message: Message):
+    await message.answer('Не понял вас... Пожалуйста, введите команду, предложенных: /start /reviews')
 
 # async def create_invoice():
 #     invoice_link = await bot.create_invoice_link(title='Оплата товара', description='Описание товара', payload='true',
