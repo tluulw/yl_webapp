@@ -12,9 +12,9 @@ load_dotenv()
 dp = Dispatcher()
 
 kb = InlineKeyboardMarkup(inline_keyboard=[
-    [InlineKeyboardButton(text='Каталог',
+    [InlineKeyboardButton(text='Отзывы',
                           web_app=WebAppInfo(
-                              url='https://11b7a6b9-812e-42b0-ae6e-766d0b53b7d1.tunnel4.com/menu'))]
+                              url='https://reviewsitochka.glitch.me/reviews'))]
 ])
 
 logging.basicConfig(
@@ -29,7 +29,7 @@ bot = Bot(BOT_TOKEN)
 
 @dp.message(Command('menu'))
 async def echo(message: Message):
-    await message.answer('Посмотреть каталог:', reply_markup=kb)
+    await message.answer('Наши отзывы:', reply_markup=kb)
 
 
 # async def create_invoice():
