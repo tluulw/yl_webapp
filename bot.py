@@ -14,13 +14,13 @@ dp = Dispatcher()
 reviews_kb = InlineKeyboardMarkup(inline_keyboard=[
     [InlineKeyboardButton(text='Отзывы',
                           web_app=WebAppInfo(
-                              url='https://ce67a790-ee75-4e79-86f9-538282685fbf.tunnel4.com/reviews'))]
+                              url='https://yl-webapp.onrender.com/reviews'))]
 ])
 
 menu_kb = InlineKeyboardMarkup(inline_keyboard=[
     [InlineKeyboardButton(text='Меню',
                           web_app=WebAppInfo(
-                              url='https://ce67a790-ee75-4e79-86f9-538282685fbf.tunnel4.com/menu'))]
+                              url='https://yl-webapp.onrender.com/menu'))]
 ])
 
 logging.basicConfig(
