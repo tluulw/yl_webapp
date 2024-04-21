@@ -3,7 +3,7 @@ function buildHTML(category, products) {
 
     products.forEach(function(item) {
         html += `
-            <li title="${item['title']}" class="catalog-product base-grid-item popup-link" href='#modal-item${item["id"]}'>
+            <li title="${item['title']}" class="catalog-product base-grid-item popup-link" href='#modal-item${item["id"]}__${category}'>
                 <div class="catalog-product__link-image">
                     <figure class="base-image catalog-product__image">
                         <img src="${item['src']}" width="100%" height="100%" loading="lazy" alt="${item['title']}" class="base-image__img" style="width: 100%; height: 100%"/>
@@ -19,11 +19,11 @@ function buildHTML(category, products) {
                 </div>
                 <div class="catalog-product__content">
                     <div class="catalog-product__info">
-                        <div class="catalog-product-title">${item['title']} ${item['size'] != 'Обычный' ? `${item['size']}` : ''}</div>
+                        <div class="catalog-product-title">${item['title']} ${item['size'] != 'Обычный' && item['size'] != 'Кидз' ? `${item['size']}` : ''}</div>
                     </div>
                 </div>
             </li>
-            <li class="modal" id="modal-item${item['id']}">
+            <li class="modal" id="modal-item${item['id']}__${category}">
                 <div class="modal__box">
                     <a class="modal__close-btn close-popup" id="close-modal__item">
                         <svg
@@ -47,7 +47,7 @@ function buildHTML(category, products) {
                     <h2>${item['title']} ${item['size'] != 'Обычный' ? `${item['size']}` : ''}</h2>
                     <p>${item['about']}</p>
                     <p>${item['price']}₽</p>
-                    <button class='modal__add-button' id='modal-item${item['id']}__button'>Добавить в корзину</button>
+                    <button class='modal__add-button' id='modal-item${item["id"]}__${category}__button'>Добавить в корзину</button>
                 </div>
             </li>`;
     });
@@ -107,9 +107,9 @@ $(document).ready(function() {
                 showProducts("is_breakfast");
             });
 
-            $("#kids-combo").click(function() {
+            $("#kids_combo").click(function() {
                 document.querySelector(".menu-categories__item_selected").classList.remove('menu-categories__item_selected');
-                document.getElementById("kids-combo").classList.add('menu-categories__item_selected');
+                document.getElementById("kids_combo").classList.add('menu-categories__item_selected');
                 showProducts("kids_combo");
             });
 

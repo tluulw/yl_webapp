@@ -51,7 +51,7 @@ function popupOpen(currentPopup, currentButton) {
 
         currentPopup.classList.add('open');
 
-        hideButton();
+        offButton();
 
         currentPopup.addEventListener('click', function (e) {
             if (!e.target.closest('.modal__box')) {
@@ -65,9 +65,9 @@ function popupOpen(currentPopup, currentButton) {
             }
         });
 
-        currentButton.addEventListener('click', function (e) {
+        $(currentButton).unbind('click').click(function() {
             popupClose(document.querySelector('.modal.open'));
-            addItem(currentButton.getAttribute("id").replace('__button', "").replace('modal-item', ""));
+            addItem(currentButton.replace('__button', "").replace('modal-item', "").replace('#', ""));
             showButton();
         });
     }
@@ -87,7 +87,6 @@ function popupClose(popupActive, doUnlock = true) {
 }
 
 function modalsScript() {
-
     var popupLinks = document.querySelectorAll(".popup-link");
 
     if (popupLinks.length > 0) {
@@ -99,7 +98,7 @@ function modalsScript() {
 
                 const popupName = popupLink.getAttribute("href").replace('#', "");
                 const currentPopup = document.getElementById(popupName);
-                const currentButton = document.getElementById(popupName + '__button')
+                const currentButton = '#' + popupName + '__button'
                 popupOpen(currentPopup, currentButton) ;
                 e.preventDefault();
             });

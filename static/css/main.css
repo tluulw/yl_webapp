@@ -185,6 +185,7 @@ body.lock {
     align-items: center;
     justify-content: center;
     overflow-y: auto;
+    overflow-x: hidden;
     visibility: hidden;
     opacity: 0;
     transition: opacity .4s, visibility .4s;
@@ -197,7 +198,7 @@ body.lock {
     text-align: center;
     position: relative;
     max-width: 500px;
-    padding: 45px;
+    padding: 18px;
     z-index: 1;
     margin: 30px 15px;
     background-color: white;
@@ -222,11 +223,11 @@ body.lock {
 }
 
 .modal__close-btn:hover svg path {
-    fill: blue;
+    fill: #264f36;
 }
 
 .modal__close-btn:active svg path {
-    fill: rgb(186, 53, 0);
+    fill: red;
 }
 
 .modal.open {
@@ -357,10 +358,6 @@ body.lock {
     background: #f4f4f4;
 }
 
-.hidden-data {
-    display: None;
-}
-
 .adding-job__form {
     display: flex;
     align-items: center;
@@ -415,4 +412,58 @@ body.lock {
 .modal__add-button:active {
   background-color: #c85000;
   box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
+}
+
+.cart-item {
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    width: 400px;
+}
+
+.cart-item__image {
+    height: 80px;
+    width: 80px;
+}
+
+.cart-item__image img {
+    background-size: cover;
+    width: 80px;
+    height: 80px;
+}
+
+.cart-item__title {
+    display: flex;
+    align-items: center;
+    height: 100px;
+}
+
+.cart-item__quantity {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100px;
+    margin-right: 10px;
+}
+
+.cart-item__total-price {
+    display: flex;
+    align-items: center;
+    height: 100px;
+}
+
+.cart-trash svg path, .cart-item__btn svg path {
+    transition: fill .4s;
+}
+
+.cart-trash:hover svg path, .cart-item__btn:hover svg path {
+    fill: #264f36;
+}
+
+.cart-trash:active svg path, .cart-item__btn:active svg path {
+    fill: red;
+}
+
+.cart-item__int {
+    margin-right: 10px;
 }

@@ -2,9 +2,9 @@ import asyncio
 import logging
 import os
 
-from aiogram import Bot, Dispatcher
+from aiogram import Bot, Dispatcher, F
 from aiogram.filters.command import Command
-from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, WebAppInfo
+from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, WebAppInfo, PreCheckoutQuery, successful_payment
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -14,13 +14,13 @@ dp = Dispatcher()
 reviews_kb = InlineKeyboardMarkup(inline_keyboard=[
     [InlineKeyboardButton(text='Отзывы',
                           web_app=WebAppInfo(
-                              url='https://11b7a6b9-812e-42b0-ae6e-766d0b53b7d1.tunnel4.com/reviews'))]
+                              url='https://ce67a790-ee75-4e79-86f9-538282685fbf.tunnel4.com/reviews'))]
 ])
 
 menu_kb = InlineKeyboardMarkup(inline_keyboard=[
-    [InlineKeyboardButton(text='Каталог',
+    [InlineKeyboardButton(text='Меню',
                           web_app=WebAppInfo(
-                              url='https://11b7a6b9-812e-42b0-ae6e-766d0b53b7d1.tunnel4.com/menu'))]
+                              url='https://ce67a790-ee75-4e79-86f9-538282685fbf.tunnel4.com/menu'))]
 ])
 
 logging.basicConfig(
@@ -42,17 +42,23 @@ async def echo(message: Message):
 
 @dp.message(Command('menu'))
 async def echo(message: Message):
-    await message.answer('Посмотреть каталог:', reply_markup=menu_kb)
+    await message.answer('Посмотреть меню:', reply_markup=menu_kb)
 
 
 @dp.message(Command('reviews'))
 async def echo(message: Message):
-    await message.answer('Посмотреть отзывы:', reply_markup=reviews_kb)
+    await message.answer('Написать отзыв:', reply_markup=reviews_kb)
 
 
-@dp.message()
-async def echo(message: Message):
-    await message.answer('Не понял вас... Пожалуйста, введите команду, предложенных: /start /reviews')
+@dp.pre_checkout_query()
+async def pre_checkout_query(pre_checkout_query: PreCheckoutQuery):
+    await bot.answer_pre_checkout_query(pre_checkout_query.id, ok=True)
+
+
+@dp.message(F.successful_payment)
+async def successful_payment(message: Message):
+    await message.answer('Оплата прошла успешно!')
+    await message.answer('Благодарим за заказ!')
 
 
 async def main() -> None:
