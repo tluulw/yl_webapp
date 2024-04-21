@@ -12,6 +12,7 @@ from forms.add_item import AddItemForm
 
 load_dotenv()
 
+db_session.global_init('db/database.db')
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 
