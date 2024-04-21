@@ -1,26 +1,23 @@
 import asyncio
 import logging
-import os
 
 from aiogram import Bot, Dispatcher, F
 from aiogram.filters.command import Command
 from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, WebAppInfo, PreCheckoutQuery
-from dotenv import load_dotenv
-
-load_dotenv()
+from config import BOT_TOKEN
 
 dp = Dispatcher()
 
 reviews_kb = InlineKeyboardMarkup(inline_keyboard=[
     [InlineKeyboardButton(text='Отзывы',
                           web_app=WebAppInfo(
-                              url='https://yl-webapp.onrender.com/reviews'))]
+                              url='https://15702985-4a68-44b7-a381-6ad4ee99039c.tunnel4.com/reviews'))]
 ])
 
 menu_kb = InlineKeyboardMarkup(inline_keyboard=[
     [InlineKeyboardButton(text='Меню',
                           web_app=WebAppInfo(
-                              url='https://yl-webapp.onrender.com/menu'))]
+                              url='https://15702985-4a68-44b7-a381-6ad4ee99039c.tunnel4.com/menu'))]
 ])
 
 logging.basicConfig(
@@ -28,7 +25,6 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-BOT_TOKEN = os.getenv("BOT_TOKEN")
 bot = Bot(BOT_TOKEN)
 
 
@@ -40,12 +36,12 @@ async def echo(message: Message):
 
 
 @dp.message(Command('menu'))
-async def echo(message: Message):
+async def menu(message: Message):
     await message.answer('Посмотреть меню:', reply_markup=menu_kb)
 
 
 @dp.message(Command('reviews'))
-async def echo(message: Message):
+async def reviews(message: Message):
     await message.answer('Написать отзыв:', reply_markup=reviews_kb)
 
 

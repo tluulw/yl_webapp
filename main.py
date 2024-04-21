@@ -1,7 +1,4 @@
-import os
-
 import requests
-from dotenv import load_dotenv
 from flask import Flask, render_template, request, jsonify, redirect
 
 from data import db_session
@@ -10,14 +7,14 @@ from data.items import Item
 from forms.add_combo import AddComboForm
 from forms.add_item import AddItemForm
 
-load_dotenv()
+from config import SECRET_KEY, PROVIDER_TOKEN, BOT_TOKEN
 
 db_session.global_init('db/database.db')
 app = Flask(__name__)
-app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
+app.config['SECRET_KEY'] = SECRET_KEY
 
-BOT_TOKEN = os.getenv("BOT_TOKEN")
-PROVIDER_TOKEN = os.getenv("PROVIDER_TOKEN")
+BOT_TOKEN = BOT_TOKEN
+PROVIDER_TOKEN = PROVIDER_TOKEN
 
 ITEMS_CATEGORY_FILTERS = {
     'is_popular': Item.is_popular,
@@ -225,7 +222,10 @@ def get_invoice():
 
     params['prices'] = prices
 
-    return requests.post(f'https://api.telegram.org/bot{BOT_TOKEN}/createInvoiceLink', json=params).json()
+    req = requests.post(f'https://api.telegram.org/bot{BOT_TOKEN}/createInvoiceLink', json=params).json()
+    print(req)
+
+    return req
 
 
 @app.route('/get_items', methods=['GET'])
