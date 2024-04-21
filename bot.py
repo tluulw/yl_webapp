@@ -29,7 +29,7 @@ bot = Bot(BOT_TOKEN)
 
 
 @dp.message(Command('start'))
-async def echo(message: Message):
+async def start(message: Message):
     await message.answer(
         'Здравствуйте! Для использования корзины и бота нажмите на кнопку "Меню", рядом с полем ввода текста 👇')
     await message.answer('Для написания вашего первого отзыва введите команду /reviews')
@@ -54,6 +54,11 @@ async def pre_checkout_query(pre_checkout_query: PreCheckoutQuery):
 async def successful_payment(message: Message):
     await message.answer('Оплата прошла успешно!')
     await message.answer('Благодарим за заказ!')
+
+
+@dp.message()
+async def echo(message: Message):
+    await message.answer('Не понял вас... Пожалуйста, введите команду, предложенных: /start /reviews')
 
 
 async def main() -> None:
